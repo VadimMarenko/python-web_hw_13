@@ -6,14 +6,26 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import text
 from sqlalchemy.orm import Session
+from starlette.middleware.cors import CORSMiddleware
 
 from src.database.db import get_db
 from src.routes import users, auth
 from src.repository.users import get_user_by_email
 
 app = FastAPI()
-# templates = Jinja2Templates(directory="templates")
-# app.mount("/static", StaticFiles(directory="static"), name="static")
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/templates", StaticFiles(directory="templates"), name="templates")
+templates = Jinja2Templates(directory="templates")
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.middleware("http")
@@ -25,16 +37,23 @@ async def add_process_time_header(request: Request, call_next):
     return response
 
 
-@app.get("/", description="Main Page")
-def read_root():
-    return {"message": "REST APP v1.2"}
+# @app.get("/", description="Main Page")
+# def read_root():
+#     return {"message": "REST APP v1.2"}
 
 
-# @app.get("/", response_class=HTMLResponse, description="Main Page")
-# def read_root(request: Request):
-# return templates.TemplateResponse(
-# "index.html", {"request": request, "title": "My App"}
-# )
+@app.get("/", response_class=HTMLResponse, description="Main Page")
+def read_root(request: Request):
+    return templates.TemplateResponse(
+        "index.html", {"request": request, "title": "My App"}
+    )
+
+
+@app.get("/main.html", response_class=HTMLResponse, description="User Page")
+def read_root(request: Request):
+    return templates.TemplateResponse(
+        "main.html", {"request": request, "title": "My App"}
+    )
 
 
 @app.get("/api/healthchecker")
