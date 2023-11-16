@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "python-web-hw-12"
+name = "python-web-hw-13"
 version = "0.1.0"
 description = ""
 authors = ["Vadim Marenko <vadim.marenko@gmail.com>"]
 license = "MIT License"
 readme = "README.md"
-packages = [{include = "python_web_hw_12"}]
+packages = [{include = "python_web_hw_13"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
