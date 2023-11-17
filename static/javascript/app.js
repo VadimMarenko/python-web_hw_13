@@ -22,8 +22,6 @@ const get_users = async () => {
 }
 
 
-
-
 const birthday_users = async () => {  
   const response = await fetch('http://localhost:8000/api/users/birthdays/', {
     method: 'GET',
