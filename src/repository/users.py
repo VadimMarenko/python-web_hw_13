@@ -95,3 +95,9 @@ async def birthdays_per_week(db: Session, days: int, skip: int, limit: int):
 
 async def get_user_by_email(email: str, db: Session) -> Users | None:
     return db.query(Users).filter_by(email=email).first()
+
+
+async def confirmed_email(email: str, db: Session) -> None:
+    user = await get_user_by_email(email, db)
+    user.confirmed = True
+    db.commit()
