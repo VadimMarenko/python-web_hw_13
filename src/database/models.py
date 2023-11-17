@@ -1,6 +1,16 @@
 import enum
 
-from sqlalchemy import Column, Integer, String, Date, DateTime, func, Enum
+from sqlalchemy import (
+    Column,
+    Integer,
+    String,
+    Date,
+    DateTime,
+    func,
+    Enum,
+    event,
+    Boolean,
+)
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -29,3 +39,16 @@ class Users(Base):
     description = Column(String(250))
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+    confirmed = Column(Boolean, default=False)
+
+
+@event.listens_for(Users, "before_insert")
+def updated_roles(mapper, conn, target):
+    if target.email == "admin@ex.ua":
+        target.roles = Role.admin
+
+
+@event.listens_for(Users, "before_update")
+def updated_roles(mapper, conn, target):
+    if target.email == "admin@ex.ua":
+        target.roles = Role.admin
