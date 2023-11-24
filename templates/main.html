@@ -28,22 +28,20 @@
       </div>
       <div class="row">
         <div class="col-6">
-          <h3>Додати користувача</h3>
-          <form id="usersCreate">
+          <h3>Знайти користувача</h3>
+          <form id="userIdForm">
             <div class="mb-3">
-              <label for="name" class="form-label"
-                >Введіть email користувача</label
-              >
-              <input
-                type="email"
-                class="form-control"
-                id="name"
-                name="email"
-                placeholder="name@example.com"
-              />
+              <label for="userId">Введіть id користувача</label>
+              <input type="text" id="userId" name="userId" />
             </div>
-            <button type="submit" class="btn btn-primary">Створити</button>
+            <button type="button" id="SearchButton">Шукати</button>
           </form>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <h3>Результат пошуку</h3>
+          <ul id="getUser"></ul>
         </div>
       </div>
     </div>

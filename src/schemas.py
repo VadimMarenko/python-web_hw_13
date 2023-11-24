@@ -15,7 +15,7 @@ class UserModel(BaseModel):
     description: str = Field(default="", max_length=250)
 
 
-class UserResponse(BaseModel):
+class UserDb(BaseModel):
     id: int
     first_name: str | None
     last_name: str | None
@@ -26,11 +26,17 @@ class UserResponse(BaseModel):
     description: str | None
     avatar: str
     roles: Role
+    confirmed: bool | None
     created_at: datetime
     updated_at: datetime
 
     class Config:
         from_attributes = True
+
+
+class UserResponse(BaseModel):
+    user: UserDb
+    detail: str = "User successfully created"
 
 
 class UserEmailModel(BaseModel):
