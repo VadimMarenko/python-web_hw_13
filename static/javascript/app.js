@@ -48,41 +48,44 @@ get_users()
 birthday_users()
 
 
-const get_user = async () => {  
-  try {
-    const userId = 1
-    const response = await fetch(`http://localhost:8000/api/users/${userId}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+// async function submitForm() {
+  const get_user = async () => {
+    try {
+      const userId = 2;
+      const apiUrl = `http://localhost:8000/api/users/2`;     
+      
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    console.log(response.status, response.statusText);
+      console.log(response.status, response.statusText);
   
-    if (response.status === 200) {
-      const user = await response.json()
+      if (response.status === 200) {
+        const user = await response.json()
     
-      const getUserContainer = document.getElementById('getUser');
-      getUserContainer.innerHTML = ''
+        const getUserContainer = document.getElementById('getUser');
+        getUserContainer.innerHTML = ''
     
-      const userList = document.createElement('ul');
-      userList.className = 'user-list';
+        const userList = document.createElement('ul');
+        userList.className = 'user-list';
 
-      for (const prop in user) {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `<strong>${prop}:</strong> ${user[prop]}`;
-        userList.appendChild(listItem);
+        for (const prop in user) {
+          const listItem = document.createElement('li');
+          listItem.innerHTML = `<strong>${prop}:</strong> ${user[prop]}`;
+          userList.appendChild(listItem);
+        }
+        getUserContainer.appendChild(userList);
+      } else {
+        console.error('Помилка при виконанні запиту:', response.statusText);
       }
-      getUserContainer.appendChild(userList);
-    } else {
-      console.error('Помилка при виконанні запиту:', response.statusText);
+    } catch (error) {
+      console.error('Помилка при виконанні запиту:', error);
     }
-  } catch (error) {
-    console.error('Помилка при виконанні запиту:', error);
   }
-}
-
+// }
 get_user()
 // const userIdForm = document.getElementById('userIdForm');
 
