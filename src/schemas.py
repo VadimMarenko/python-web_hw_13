@@ -5,14 +5,14 @@ from src.database.models import Role
 
 
 class UserModel(BaseModel):
-    first_name: str = Field(default="", max_length=25)
-    last_name: str = Field(default="", max_length=30)
+    first_name: str | None = Field(default="", max_length=25)
+    last_name: str | None = Field(default="", max_length=30)
     username: str = Field(min_length=6, max_length=12)
     email: EmailStr
     password: str = Field(min_length=6, max_length=8)
-    phone_number: str = Field(default="", max_length=25)
+    phone_number: str | None = Field(default="", max_length=25)
     born_date: date | None
-    description: str = Field(default="", max_length=250)
+    description: str | None = Field(default="", max_length=250)
 
 
 class UserDb(BaseModel):
