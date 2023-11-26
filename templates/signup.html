@@ -15,82 +15,102 @@
   </head>
   <body class="text-center">
     <main class="form-signin w-100 m-auto">
+      <img
+        class="mb-4"
+        src="/static/images/logo.jpg"
+        alt=""
+        width="300"
+        height="300"
+      />
+      <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
       <form>
-        <img
-          class="mb-4"
-          src="/static/images/logo.jpg"
-          alt=""
-          width="300"
-          height="300"
-        />
-        <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
-
         <div class="form-floating">
           <input
-            type="firstname"
+            type="text"
             class="form-control"
-            id="floatingInput"
-            placeholder="firstname"
-            name="firstname"
+            id="first_name"
+            placeholder="first_name"
+            autocomplete="given-name"
+            name="first_name"
+            required
           />
-          <label for="floatingInput">Firstname</label>
+          <label for="first_name">First Name</label>
         </div>
         <div class="form-floating">
           <input
-            type="lastname"
+            type="text"
             class="form-control"
-            id="floatingInput"
-            placeholder="lastname"
-            name="lastname"
+            id="last_name"
+            placeholder="last_name"
+            autocomplete="family-name"
+            name="last_name"
+            required
           />
-          <label for="floatingInput">Lastname</label>
+          <label for="last_name">Last Name</label>
         </div>
         <div class="form-floating">
           <input
-            type="username"
+            type="text"
             class="form-control"
-            id="floatingInput"
+            id="username"
             placeholder="username"
             name="username"
+            required
           />
-          <label for="floatingInput">Username</label>
+          <label for="username">Username</label>
         </div>
         <div class="form-floating">
           <input
             type="email"
             class="form-control"
-            id="floatingInput"
+            id="email"
             placeholder="name@example.com"
             name="email"
+            required
           />
-          <label for="floatingInput">Email address</label>
+          <label for="email">Email address</label>
         </div>
         <div class="form-floating">
           <input
             type="password"
             class="form-control"
-            id="floatingPassword"
+            id="password"
             placeholder="Password"
             name="password"
+            required
           />
-          <label for="floatingPassword">Password</label>
+          <label for="password">Password</label>
         </div>
         <div class="form-floating">
           <input
-            type="born_date"
+            type="date"
             class="form-control"
-            id="floatingInput"
+            id="born_date"
             placeholder="born_date"
             name="born_date"
           />
-          <label for="floatingInput">Born date</label>
+          <label for="born_date">Born date</label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            placeholder="description"
+            name="description"
+          />
+          <label for="description">Description</label>
+        </div>
+        <button
+          class="w-100 btn btn-lg btn-primary"
+          onclick="submitForm()"
+          type="submit"
+        >
           Sign up
         </button>
         <p class="mt-5 mb-3 text-muted">&copy; 2023</p>
       </form>
+      <script src="/static/javascript/register.js"></script>
     </main>
-    <script src="/static/javascript/register.js"></script>
   </body>
 </html>
